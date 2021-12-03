@@ -27,7 +27,7 @@ counts['r3'] = SRR3414631['r3']
 counts['c1'] = SRR3414635['c1']
 counts['c2'] = SRR3414636['c2']
 counts['c3'] = SRR3414637['c3']
-counts.to_csv("ALL.counts", sep="\t")
+# counts.to_csv("ALL.counts", sep="\t")
 # counts = pd.read_csv("ALL.counts", sep="\t", index_col=0)
 
 meta = pd.DataFrame({"Type": ["Sample"]*3 + ["Control"]*3}, index=counts.columns)
