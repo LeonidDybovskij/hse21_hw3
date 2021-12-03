@@ -29,6 +29,7 @@ counts['c2'] = SRR3414636['c2']
 counts['c3'] = SRR3414637['c3']
 # counts.to_csv("ALL.counts", sep="\t")
 # counts = pd.read_csv("ALL.counts", sep="\t", index_col=0)
+print(counts)
 
 meta = pd.DataFrame({"Type": ["Sample"]*3 + ["Control"]*3}, index=counts.columns)
 meta["Type"] = stats.relevel(robjects.vectors.FactorVector(meta["Type"]), ref="Control")
@@ -38,8 +39,8 @@ dds = DESeq2.DESeqDataSetFromMatrix(countData=counts, colData=meta, design=Formu
 dds = DESeq2.DESeq(dds)
 print(dds)
 
-res = DESeq2.results(dds, name="Sample_vs_Control")
-res = DESeq2.lfcShrink(dds, coef="Sample_vs_Control", type="apeglm")
+res = DESeq2.results(dds, name="Type_Sample_vs_Control")
+res = DESeq2.lfcShrink(dds, coef="Type_Sample_vs_Control", type="apeglm")
 res = pd.DataFrame(base.as_data_frame(res))
 res.index = counts.index
 res = res.sort_values("padj")
@@ -48,10 +49,10 @@ res = res.loc[res["padj"] < 0.01]
 print(res)
 
 res.to_csv("differentially_expressed_genes.txt", sep="\t")
-'''
+
 sns.heatmap(res)
 plt.savefig("HW3_heatmap.pdf")
 plt.close()
-
+'''
 # visuz.GeneExpression.ma(df=res, lfc='log2FC', ct_count='value1', st_count='value2', pv='p-value')
 '''
