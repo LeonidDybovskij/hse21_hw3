@@ -50,7 +50,7 @@ print(res)
 
 res.to_csv("differentially_expressed_genes.txt", sep="\t")
 
-sns.heatmap(res)
+sns.heatmap(res, vmin=0, vmax=1)
 plt.savefig("HW3_heatmap.pdf")
 plt.close()
 '''
