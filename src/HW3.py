@@ -30,12 +30,10 @@ counts['c3'] = SRR3414637['c3']
 counts.to_csv("ALL.counts", sep="\t")
 # counts = pd.read_csv("ALL.counts", sep="\t", index_col=0)
 
-# Define meta
 meta = pd.DataFrame({"Type": ["Sample"]*3 + ["Control"]*3}, index=counts.columns)
 meta["Type"] = stats.relevel(robjects.vectors.FactorVector(meta["Type"]), ref="Control")
 print(meta)
 
-# Calculate normalization factors
 dds = DESeq2.DESeqDataSetFromMatrix(countData=counts, colData=meta, design=Formula("~ Type"))
 dds = DESeq2.DESeq(dds)
 print(dds)
