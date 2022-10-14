@@ -12,7 +12,7 @@ grep -P '^@|NH:i:1$' SRR3414636_1.sam > SRR3414636.uniq.sam
 grep -v '^@' SRR3414636.uniq.sam | wc -l
 
 С помощью HTSeq подсчитали количество ридов, попавших на каждый ген:
-htseq-count --format=sam --stranded=no SRR3414636.uniq.sam  gencode.vM25.annotation.gtf > SRR3414636.counts
+htseq-count --format=sam --stranded=no SRR3414636.uniq.sam  gencode.vM25.annotation.gtf > SRR3414636.counts (папка reads)
 
 В полученных файлах указано число ридов, соответсвующих участкам генома, где не аннотировано ни одного экзона (__no_feature), а также количество ридов, которые могут принадлежать разным генам (__ambiguous). С вычетом этих ридов было получено следующее число ридов:
 
@@ -24,3 +24,5 @@ htseq-count --format=sam --stranded=no SRR3414636.uniq.sam  gencode.vM25.annotat
 | SRR3414635.uniq.sam  | 18428317  | 16275997 |
 | SRR3414636.uniq.sam  | 17825380  | 15757580 |
 | SRR3414637.uniq.sam  | 17844858  | 15736978 |
+
+Объединили файлы .counts в файл ALL.counts (папка data).
