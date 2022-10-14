@@ -26,3 +26,5 @@ htseq-count --format=sam --stranded=no SRR3414636.uniq.sam  gencode.vM25.annotat
 | SRR3414637.uniq.sam  | 17844858  | 15736978 |
 
 Объединили файлы .counts в файл ALL.counts (папка data).
+
+Анализ пакетом DESeq2 был проведён на python (папка src).
