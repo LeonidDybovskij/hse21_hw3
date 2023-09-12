@@ -1,24 +1,23 @@
-[Ссылка на README на русском](README.ru.md)
+[This README in russian](README.ru.md)
 
-Целью данного задания является сравнение данных RNA-seq для двух групп эмбриональных мышиных фибробластов с помощью DESeq2.
+The purpose of this work was comparison of the RNA-seq data between two groups of mouse embryonic fibroblasts using DESeq2.
 
-Для анализа были взяты 3 тестовых образца (SRR3414629.fastq, SRR3414630.fastq, SRR3414630.fastq) и три контрольных образца (SRR3414635.fastq, SRR3414636.fastq, SRR3414637.fastq).
+Three test samples (SRR3414629.fastq, SRR3414630.fastq, SRR3414631.fastq) and three control samples (SRR3414635.fastq, SRR3414636.fastq, SRR3414637.fastq) were taken for analysis.
+The quality of the reads was checked using FastQC (the result is in the fastqc folder).
 
-Качество чтений было проверено с помощью FastQC (результат - в папке fastqc).
-
-Далее было проведено картирование на геном с помощью HISAT2:
+Next, genome mapping was carried out using HISAT2:
 hisat2 -p 3 -x mm10/genome -U SRR3414636_1.fastq -S SRR3414636_1.sam  2>  SRR3414636.hisat
 
-После чего было подсчитано количество уникально закартировавшихся ридов:
+After that the number of uniquely mapped reads was calculated:
 grep -P '^@|NH:i:1$' SRR3414636_1.sam > SRR3414636.uniq.sam
 grep -v '^@' SRR3414636.uniq.sam | wc -l
 
-С помощью HTSeq подсчитали количество ридов, попавших на каждый ген:
-htseq-count --format=sam --stranded=no SRR3414636.uniq.sam  gencode.vM25.annotation.gtf > SRR3414636.counts (папка reads)
+Using HTSeq, the number of reads that fell on each gene was calculated too:
+htseq-count --format=sam --stranded=no SRR3414636.uniq.sam  gencode.vM25.annotation.gtf > SRR3414636.counts (reads folder)
 
-В полученных файлах указано число ридов, соответсвующих участкам генома, где не аннотировано ни одного экзона (__no_feature), а также количество ридов, которые могут принадлежать разным генам (__ambiguous). С вычетом этих ридов было получено следующее число ридов:
+The resulting files show the number of reads corresponding to genome regions where no exons are annotated (__no_feature), as well as the number of reads that may belong to different genes (__ambiguous). Subtracting these reads, the following number of reads was obtained:
 
-| Файл с ридами  | Всего ридов | С вычетом указанных выше ридов |
+| File with reads  | Total reads | Subtracting the above reads |
 | ------------- | ------------- | ------------- |
 | SRR3414629.uniq.sam  | 18375888  | 16049609 |
 | SRR3414630.uniq.sam  | 13186139  | 11465324 |
@@ -27,6 +26,6 @@ htseq-count --format=sam --stranded=no SRR3414636.uniq.sam  gencode.vM25.annotat
 | SRR3414636.uniq.sam  | 17825380  | 15757580 |
 | SRR3414637.uniq.sam  | 17844858  | 15736978 |
 
-Объединили файлы .counts в файл ALL.counts (папка data).
+All .counts files were merged into the ALL.counts file (data folder).
 
-Анализ пакетом DESeq2 был проведён на python (папка src).
+Analysis with the DESeq2 package was carried out in python (src folder).
