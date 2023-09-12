@@ -5,7 +5,7 @@ The purpose of this work was comparison of the RNA-seq data between two groups o
 Three test samples (SRR3414629.fastq, SRR3414630.fastq, SRR3414631.fastq) and three control samples (SRR3414635.fastq, SRR3414636.fastq, SRR3414637.fastq) were taken for analysis.
 The quality of the reads was checked using FastQC (the result is in the fastqc folder).
 
-Next, genome mapping was carried out using HISAT2:
+Next, genome mapping was carried out using HISAT2:\n
 hisat2 -p 3 -x mm10/genome -U SRR3414636_1.fastq -S SRR3414636_1.sam  2>  SRR3414636.hisat
 
 After that the number of uniquely mapped reads was calculated:
