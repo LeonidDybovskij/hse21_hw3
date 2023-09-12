@@ -1,4 +1,4 @@
-### Differential expresion analysis
+### Differential expression analysis
 
 [This README in russian](README.ru.md)
 
