@@ -29,3 +29,4 @@ The resulting files show the number of reads corresponding to genome regions whe
 All .counts files were merged into the ALL.counts file (data folder).
 
 Analysis with the DESeq2 package was carried out in python (src folder).
+
