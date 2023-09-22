@@ -1,7 +1,5 @@
 ### Differential expression analysis
 
-[This README in russian](README.ru.md)
-
 The purpose of this work was comparison of the RNA-seq data between two groups of mouse embryonic fibroblasts using DESeq2.
 
 Three test samples (SRR3414629.fastq, SRR3414630.fastq, SRR3414631.fastq) and three control samples (SRR3414635.fastq, SRR3414636.fastq, SRR3414637.fastq) were taken for analysis.  
